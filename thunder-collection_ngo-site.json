@@ -1,0 +1,197 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "ngo-site",
+    "dateExported": "2023-08-09T16:20:13.786Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "1a890761-828d-449b-ac7f-f6ea518f6814",
+            "name": "user and login",
+            "containerId": "",
+            "created": "2023-08-09T07:33:57.040Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "9dad679e-1966-4a39-abf5-8bbf63ad2102",
+            "name": "donations",
+            "containerId": "",
+            "created": "2023-08-09T07:42:48.543Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "posts",
+            "containerId": "",
+            "created": "2023-08-09T07:57:57.602Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "15f80927-8ca6-490d-8e1e-9c34f9bd5af0",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "1a890761-828d-449b-ac7f-f6ea518f6814",
+            "name": "getting user details",
+            "url": "http://localhost:3000/api/auth/getuser",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-08-05T07:39:44.769Z",
+            "modified": "2023-08-09T07:35:26.210Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "64d338c74b29ea6404e083a9"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7d3ffd86-7eca-4506-8d5a-4b7b11512236",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "1a890761-828d-449b-ac7f-f6ea518f6814",
+            "name": "add usre",
+            "url": "http://localhost:3000/api/auth/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-08-09T07:34:32.934Z",
+            "modified": "2023-08-09T07:47:38.933Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \"name\":\"xxxxxx\", \"email\":\"xxxxxx@gmail.com\", \"phone\": 111222333, \"role\": \"chad\" }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9c2ee029-aec1-4374-a75b-7704413f6ed1",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "9dad679e-1966-4a39-abf5-8bbf63ad2102",
+            "name": "update donation",
+            "url": "http://localhost:3000/api/donate/adddonation",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-08-09T07:43:03.247Z",
+            "modified": "2023-08-09T15:51:13.563Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \"name\":\"yyyyyy\", \"email\":\"yyy@gmail.com\", \"phone\": 00000, \"role\": \"vlad\", \"amount\": 9999 }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "89ba6aeb-e957-4b59-9f86-5017a3998cca",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "create post",
+            "url": "http://localhost:3000/api/post/createPost",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-08-09T07:58:03.386Z",
+            "modified": "2023-08-09T08:36:15.692Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "64d343680dae2c3fc64acdfb"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"test\",\n  \"content\": \"test\",\n  \"tags\": \"test\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "276eb8a4-3abd-4a8e-a1b0-913578825d53",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "fetch all posts",
+            "url": "http://localhost:3000/api/post/fetchAllPosts",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-08-09T08:02:03.759Z",
+            "modified": "2023-08-09T08:02:30.037Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "88840897-42f9-4ee4-a920-abd46a5ac2d9",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "fetch user posts",
+            "url": "http://localhost:3000/api/post/fetchUserPosts",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-08-09T08:02:41.982Z",
+            "modified": "2023-08-09T08:04:11.692Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "64d343680dae2c3fc64acdfb"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ef4b03a5-f1a7-4a6c-a766-87fa16818d09",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "update post",
+            "url": "http://localhost:3000/api/post/updatePost/64d3528c15d28b3f3c44ac2e",
+            "method": "PATCH",
+            "sortNum": 70000,
+            "created": "2023-08-09T08:04:36.154Z",
+            "modified": "2023-08-09T08:48:50.729Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "64d343680dae2c3fc64acdfb"
+                },
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"updated test\",\n  \"content\": \"updated test\",\n  \"tags\": \"updated test\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2e7293f1-fbfc-4ffb-bcbb-0b6dd158e2fa",
+            "colId": "e5392a85-5786-4dff-b6cf-f342bcbca1c3",
+            "containerId": "eb04d0f5-1a27-42d0-b92f-dd0418f7ccd1",
+            "name": "delete post",
+            "url": "http://localhost:3000/api/post/deletePost/64d3528c15d28b3f3c44ac2e",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2023-08-09T08:18:42.547Z",
+            "modified": "2023-08-09T08:49:25.810Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "64d343680dae2c3fc64acdfb"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
