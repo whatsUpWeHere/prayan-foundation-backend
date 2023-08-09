@@ -1,28 +1,24 @@
-// const jwt = require("jsonwebtoken");
-// const JWT_SECRET = process.env.JWT_SECRET;
+const User = require("../models/User");
+// middelware code to authenticate admin
+const authenticateAdmin = async (req, res, next) => {
+    try {
+        const { id } = req.headers;
 
-// // middelware code to authenticate admin
-// const authenticateAdmin= async (req, res, next) => {
-//     // userData is a cookie (objec having auth-token and creatorId(mongoDB id))
+        const creatorData = await User.findById(id);
 
-//     const token = req.header("auth-token");
-//     if (!token){
-//         return res.status(401).send({ message: "Please authenticate using a valid token" });
-//     }
+        if (!creatorData || creatorData.role !== "admin") {
+            return res
+                .status(401)
+                .json({ message: "Unauthorized: Admin access required" });
+        }
 
-//     const data = jwt.verify(token, JWT_SECRET);
-//     req.user = data.user;
-//     const { creatorId } = req.header("userData");
-//     const creator = await User.findById(creatorId);
-   
+        next(); // Proceed to the next middleware or route handler
+    } catch (error) {
+        res.status(500).json({
+            message: "Error authenticating admin",
+            error: error.message,
+        });
+    }
+};
 
-//     if (creator?.role !== "admin") {
-//         return res
-//             .status(401)
-//             .send({ message: "You are not authorized to create a post" });
-//     }
-
-//     next();
-// };
-
-// module.exports = authenticateAdmin;
+module.exports = authenticateAdmin;

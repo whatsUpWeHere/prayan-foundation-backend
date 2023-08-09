@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/post");
-const User = require("../models/user");
-const authenticateUser = require("../middleware/authenticateUser");
-const { mongo } = require("mongoose");
+const authenticateAdmin = require("../middleware/authenticateAdmin");
 
 // get all posts of a user
-router.get("/fetchUserPosts", async (req, res) => {
+router.get("/fetchuserPosts", async (req, res) => {
     try {
-        const posts = await Post.find({ creator: req.user.id }).sort({
+        const { id } = req.headers;
+        const creatorId = id;
+        const posts = await Post.find({ creator: creatorId }).sort({
             date: -1,
         });
         res.status(200).json({ posts });
@@ -30,18 +30,11 @@ router.get("/fetchAllPosts", async (req, res) => {
 });
 
 // create a post
-router.post("/createPost", authenticateUser, async (req, res) => {
+router.post("/createPost", authenticateAdmin, async (req, res) => {
     try {
-        const creatorId  = req.user.id;
         const { title, content, tags } = req.body;
-
-        const creator = await User.findById(creatorId);
-
-        if (creator?.role !== "admin") {
-            return res
-                .status(401)
-                .send({ message: "You are not authorized to create a post" });
-        }
+        const { id } = req.headers;
+        const creatorId = id;
 
         const newPost = await Post.create({
             creator: creatorId,
@@ -61,9 +54,13 @@ router.post("/createPost", authenticateUser, async (req, res) => {
 });
 
 // update a post
-router.patch("/updatePost/:id", authenticateUser, async (req, res) => {
+router.patch("/updatePost/:postId", authenticateAdmin, async (req, res) => {
     try {
-        const newPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
+        const { postId } = req.params;
+
+        const { _id, ...postData } = req.body;
+
+        const newPost = await Post.findByIdAndUpdate(postId, postData, {
             new: true,
         });
 
@@ -78,9 +75,12 @@ router.patch("/updatePost/:id", authenticateUser, async (req, res) => {
 });
 
 // delete a post
-router.patch("/deletePost/:id", authenticateUser, async (req, res) => {
+router.delete("/deletePost/:postId", authenticateAdmin, async (req, res) => {
     try {
-        const deletedPost = await Post.findByIdAndDelete(req.params.id);
+       
+        const { postId } = req.params;
+
+        const deletedPost = await Post.findByIdAndDelete(postId);
 
         if (!deletedPost) {
             return res.status(404).send({ message: "Post not found." });
@@ -88,11 +88,11 @@ router.patch("/deletePost/:id", authenticateUser, async (req, res) => {
 
         res.status(201).json({
             message: "Post deleted successfully...",
-            newPost,
+            deletedPost,
         });
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Error updating post...");
+        res.status(500).send("Error deleting post...");
     }
 });
 

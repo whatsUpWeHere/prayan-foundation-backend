@@ -6,8 +6,8 @@ const userSchema = new Schema({
         type: String,
         required: [true, "name is required"],
         match: [
-            /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
-            "Username invalid, it should contain 8-20 alphanumeric letters and be unique!",
+            /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+            "Username invalid, it should contain 4-20 alphanumeric letters and be unique!",
         ],
     },
     email: {
@@ -19,8 +19,30 @@ const userSchema = new Schema({
             "Email invalid, it should be unique!",
         ],
     },
+    phone:{
+        type: Number,
+        default: null,
+    },
+    state: {
+        type: String,
+        required: [true, "state is required"],
+    },
     role:{
         type: String,
+        default: "visitor",
+    }, 
+    donations:{
+        type: [
+            {
+                amount: Number,
+                date: {
+                    type: Date,
+                    default: Date.now,
+                },
+
+            }
+        ],
+        default: [],
     }
 });
 

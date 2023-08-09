@@ -15,11 +15,16 @@ app.listen(port, ()=>{
 })
 
 app.get("/", (req, res)=>{
-    res.send("Hello World");
+    res.send("This is backend for NGO site...");
 })
+
+
+// websitename.com/api/auth
 
 app.use("/api/auth", require("./routes/auth"));
 
 app.use('/api/post', require('./routes/post'));
+
+app.use('/api/donate', require('./routes/donate'));
 
 
