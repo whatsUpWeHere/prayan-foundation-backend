@@ -8,10 +8,16 @@ connectToDB();
 
 const app = express();
 
+// const corsOptions = {
+//     origin: 'http://localhost:3000', // Replace with your allowed origin(s)
+//     methods: 'GET,POST', // Specify allowed HTTP methods
+//     allowedHeaders: 'Content-Type,Authorization', // Specify allowed headers
+// };
+
 const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your allowed origin(s)
-    methods: 'GET,POST', // Specify allowed HTTP methods
-    allowedHeaders: 'Content-Type,Authorization', // Specify allowed headers
+    origin: '*', // Replace with your allowed origin(s)
+    methods: '*', // Specify allowed HTTP methods
+    allowedHeaders: '*', // Specify allowed headers
 };
 
 app.use(cors(corsOptions));
