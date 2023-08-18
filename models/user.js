@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const  { Schema, model, models } = mongoose;
+const { Schema, model, models } = mongoose;
 
 const userSchema = new Schema({
     name: {
         type: String,
         required: [true, "name is required"],
         match: [
-            /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+            /^(?=.{4,50}$)[a-zA-Z]+(?: [a-zA-Z]+){0,2}$/,
             "Username invalid, it should contain 4-20 alphanumeric letters and be unique!",
         ],
     },
@@ -19,19 +19,19 @@ const userSchema = new Schema({
             "Email invalid, it should be unique!",
         ],
     },
-    phone:{
+    phone: {
         type: Number,
         default: null,
     },
     state: {
         type: String,
-        required: [true, "state is required"],
+        default: "",
     },
-    role:{
+    role: {
         type: String,
-        default: "visitor",
-    }, 
-    donations:{
+        default: "visitor", //visitor, admin, volunteer, donor
+    },
+    donations: {
         type: [
             {
                 amount: Number,
@@ -43,6 +43,10 @@ const userSchema = new Schema({
             }
         ],
         default: [],
+    },
+    reason: {
+        type: String,
+        default: "",
     }
 });
 
