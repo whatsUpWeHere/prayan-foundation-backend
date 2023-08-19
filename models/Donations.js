@@ -17,3 +17,5 @@ const donationSchema = new Schema({
 });
 
 const Donation = models.Donation || model("Donation", donationSchema);
+
+module.exports = Donation;
