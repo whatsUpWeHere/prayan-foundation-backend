@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User.js");
+const User = require("../models/user.js");
 
 // sitename.com/api/auth/getuser
 // route to get user details

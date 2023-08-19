@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 // middelware code to authenticate admin
 const authenticateAdmin = async (req, res, next) => {
     try {
