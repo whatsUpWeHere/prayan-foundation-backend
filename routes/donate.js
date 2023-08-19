@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
-const Donation = require("../models/Donations");
+const User = require("../models/User.js");
+const Donation = require("../models/Donations.js");
 
 // route to add donation to user database information
 

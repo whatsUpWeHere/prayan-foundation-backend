@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/post");
+const Post = require("../models/post.js");
 const authenticateAdmin = require("../middleware/authenticateAdmin");
 
 // get all posts of a user
