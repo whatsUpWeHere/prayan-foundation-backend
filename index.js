@@ -41,6 +41,8 @@ app.use("/api/auth", require("./routes/auth"));
 
 app.use('/api/post', require('./routes/post'));
 
+app.use('/api/event', require('./routes/event'));
+
 app.use('/api/donate', require('./routes/donate'));
 
 
