@@ -13,7 +13,7 @@ router.get("/fetchAllEvents", async (req, res) => {
         res.status(200).json({ events });
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Error getting events...");
+        res.status(500).json({ message: "Error getting events..." });
     }
 });
 
@@ -34,7 +34,7 @@ router.post("/createEvent", authenticateAdmin, async (req, res) => {
         });
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Error creating event...");
+        res.status(500).json({ message: "Error creating event...", error });
     }
 });
 
@@ -49,13 +49,13 @@ router.patch("/updateEvent/:eventId", authenticateAdmin, async (req, res) => {
             new: true,
         });
 
-        res.status(20).json({
+        res.status(200).json({
             message: "event updated successfully...",
             newEvent,
         });
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Error updating event...");
+        res.status(500).json({ message: "Error updating event...", error });
     }
 });
 
@@ -71,13 +71,13 @@ router.delete("/deleteEvent/:eventId", authenticateAdmin, async (req, res) => {
             return res.status(404).send({ message: "Event not found." });
         }
 
-        res.status(20).json({
+        res.status(200).json({
             message: "Event deleted successfully...",
             deletedEvent,
         });
     } catch (error) {
         console.log(error.message);
-        res.status(500).send("Error deleting event...");
+        res.status(500).json({ message: "Error deleting event...", error });
     }
 });
 

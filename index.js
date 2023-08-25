@@ -9,28 +9,26 @@ connectToDB();
 const app = express();
 
 // const corsOptions = {
-//     origin: 'http://localhost:3000', // Replace with your allowed origin(s)
-//     methods: 'GET,POST', // Specify allowed HTTP methods
-//     allowedHeaders: 'Content-Type,Authorization', // Specify allowed headers
+//     origin: "https://your-frontend-domain.com", // Replace with your frontend's domain
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true, // Allow cookies and credentials in cross-origin requests
+//     exposedHeaders: ["Authorization"], // Expose specific headers to the frontend
 // };
 
-const corsOptions = {
-    origin: '*', // Replace with your allowed origin(s)
-    methods: '*', // Specify allowed HTTP methods
-    allowedHeaders: '*', // Specify allowed headers
-};
 
-app.use(cors(corsOptions));
+
+// app.use(cors(corsOptions));
+app.use(cors());
 
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
 
-app.get("/", (req, res)=>{
+app.get("/", (req, res) => {
     res.send("This is backend for NGO site...");
 })
 
