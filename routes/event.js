@@ -49,7 +49,7 @@ router.patch("/updateEvent/:eventId", authenticateAdmin, async (req, res) => {
             new: true,
         });
 
-        res.status(201).json({
+        res.status(20).json({
             message: "event updated successfully...",
             newEvent,
         });
@@ -71,7 +71,7 @@ router.delete("/deleteEvent/:eventId", authenticateAdmin, async (req, res) => {
             return res.status(404).send({ message: "Event not found." });
         }
 
-        res.status(201).json({
+        res.status(20).json({
             message: "Event deleted successfully...",
             deletedEvent,
         });
