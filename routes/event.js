@@ -21,12 +21,16 @@ router.get("/fetchAllEvents", async (req, res) => {
 // create a event
 router.post("/createEvent", authenticateAdmin, async (req, res) => {
     try {
-        const { heading, content, date, time, venue } = req.body;
+        const { heading, content, date, time, venue, image } = req.body;
         const { id } = req.headers;
 
         const newEvent = await Event.create({
             heading, content, date, time, venue
         });
+
+        if (image){
+            newEvent.image = image;
+        }
 
         res.status(201).json({
             message: "event created successfully...",

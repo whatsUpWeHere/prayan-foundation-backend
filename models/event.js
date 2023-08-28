@@ -22,6 +22,10 @@ const postSchema = new Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+        default: "https://github.com/whatsUpWeHere/prayanFoundationwebsiteImages/blob/main/donate.jpg?raw=true",
+    },
     
 });
 
