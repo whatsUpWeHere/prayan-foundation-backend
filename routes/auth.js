@@ -57,6 +57,50 @@ router.post("/createuser", async (req, res) => {
     }
 });
 
+router.post("/createVolunteer", async (req, res) => {
+    try {
+        console.log('user body is ', req.body)
+        const userObj = req.body;
+        const { name, email, role, volunteerObj } = userObj;
+        let user = await User.findOne({
+            email: email,
+        });
+
+        // console.log("req.body at backend is", req.body)
+        if (user && volunteerObj) {
+            // User with the email exists, update their volunteer field.
+            user.volunteer = volunteerObj;
+            await user.save();
+            return res.status(200).json({
+                message: "Volunteer information updated successfully...",
+                user,
+            });
+        }
+
+
+        console.log("name is", name)
+        console.log("volunteerObj is", volunteerObj)
+
+        const newUserObj = {
+            name: name,
+            email: email,
+            role: role || "visitor",
+            phone: req.body.phone || null,
+
+        }
+        if (volunteerObj) {
+            newUserObj.volunteer = volunteerObj;
+        }
+
+        user = await User.create(newUserObj);
+
+        res.status(201).json({ message: "Volunteer created successfully...", user });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ "error": "Error creating volunteer..." });
+    }
+});
+
 // route to update user
 router.patch("/updateuser", async (req, res) => {
     try {

@@ -44,10 +44,112 @@ const userSchema = new Schema({
         ],
         default: [],
     },
-    reason: {
-        type: String,
-        default: "",
+
+    // for volunteers
+    volunteer: {
+        type:
+        {
+            volunteerImage: {
+                type: String,
+                default: "",
+            },
+            name: {
+                type: String,
+                required: [true, "volunteer name is required"],
+                match: [
+                    /^(?=.{4,50}$)[a-zA-Z]+(?: [a-zA-Z]+){0,2}$/,
+                    "Volunteer name invalid, it should contain 4-20 alphanumeric letters and be unique!",
+                ],
+            },
+            parentName: {
+                type: String,
+                required: [true, "parent name is required"],
+            },
+            bloodGroup: {
+                type: String,
+                default: "",
+            },
+            rh: {
+                type: String,
+                default: "",
+            },
+            email: {
+                type: String,
+                required: [true, "volunteer email is required"],
+                unique: [true, "volunteer email already exists"],
+                match: [
+                    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    " volunteer email invalid, it should be unique!",
+                ],
+            },
+            phoneNumber: {
+                type: String,
+                required: [true, "phone number is required"],
+            },
+            profession: {
+                type: String,
+                default: "",
+            },
+            instituteName: {
+                type: String,
+                default: "",
+            },
+            class: {
+                type: String,
+                default: "",
+            },
+            collegeYear: {
+                type: String,
+                default: "",
+            },
+            professionalName: {
+                type: String,
+                default: "",
+            }, socialOther: {
+                type: String,
+                default: "",
+            }, socialSocial: {
+                type: String,
+                default: "",
+            }, address: {
+                type: String,
+                default: "",
+            },
+            address2: {
+                type: String,
+                default: "",
+            }, city: {
+                type: String,
+                default: "",
+            }, state: {
+                type: String,
+                default: "",
+            }, pin: {
+                type: Number,
+                default: "",
+            }, dob: {
+                type: Date,
+                default: Date.now,
+            },
+            gender: {
+                type: String,
+                default: "",
+            }, whyJoin: {
+                type: String,
+                default: "",
+            }, workPreference: {
+                type: String,
+                default: "",
+            }, findAboutUs: {
+                type: String,
+                default: "",
+            }
+        }
+        ,
+        default: {},
     }
+
+
 });
 
 const User = models.User || model("User", userSchema);
