@@ -15,10 +15,15 @@ const app = express();
 //     exposedHeaders: ["Authorization"], // Expose specific headers to the frontend
 // };
 
+const corsOptions = {
+    origin: ["http://localhost:3000", "https://www.prayanfoundation.in/"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+};
 
 
-// app.use(cors(corsOptions));
-app.use(cors());
+// app.use(cors());
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 5000;
 
