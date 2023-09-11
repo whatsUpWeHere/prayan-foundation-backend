@@ -16,7 +16,7 @@ const app = express();
 // };
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "www.prayanfoundation.in"],
+    origin: ["http://localhost:3000", "www.prayanfoundation.in", "https://www.prayanfoundation.in", "prayanfoundation.in"],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
 };
