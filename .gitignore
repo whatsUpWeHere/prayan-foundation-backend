@@ -5,6 +5,7 @@
 /prayan-site-server
 /.pnp
 .pnp.js
+
 .env
 
 # testing
