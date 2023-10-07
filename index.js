@@ -48,4 +48,6 @@ app.use('/api/event', require('./routes/event'));
 
 app.use('/api/donate', require('./routes/donate'));
 
+app.use('/api/newsletter', require('./routes/newsletter'));
+
 
